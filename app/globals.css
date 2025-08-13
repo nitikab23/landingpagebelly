@@ -167,7 +167,7 @@
 .reveal {
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.6s ease;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .reveal.is-visible {
@@ -179,7 +179,7 @@
 .reveal-slide-up {
   opacity: 0;
   transform: translateY(40px);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .reveal-slide-up.is-visible {
@@ -189,8 +189,8 @@
 
 .reveal-slide-left {
   opacity: 0;
-  transform: translateX(40px);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateX(60px);
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .reveal-slide-left.is-visible {
@@ -201,7 +201,7 @@
 .reveal-fade-up {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.7s ease-out;
+  transition: all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .reveal-fade-up.is-visible {
@@ -212,7 +212,7 @@
 .reveal-zoom-in {
   opacity: 0;
   transform: scale(0.95);
-  transition: all 0.6s ease-out;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .reveal-zoom-in.is-visible {
@@ -220,14 +220,32 @@
   transform: scale(1);
 }
 
+/* New mobile-optimized animations */
+@media (max-width: 768px) {
+  .reveal-slide-up {
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+  }
+  
+  .reveal-slide-left {
+    transform: translateX(20px);
+    transition: all 0.7s ease-out;
+  }
+  
+  .reveal-fade-up {
+    transform: translateY(15px);
+    transition: all 0.5s ease-out;
+  }
+}
+
 /* Keyframe animations */
 @keyframes float {
   0%,
   100% {
-    transform: translateY(0px) rotate(3deg);
+    transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px) rotate(3deg);
+    transform: translateY(-8px);
   }
 }
 
@@ -237,7 +255,7 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
   }
 }
 
@@ -286,13 +304,23 @@
   }
 }
 
+/* Pulse animation for CTAs */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(232, 185, 93, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(232, 185, 93, 0);
+  }
+}
+
 /* Animation utility classes */
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: float 4s ease-in-out infinite;
 }
 
 .animate-bounce-subtle {
-  animation: bounce-subtle 2s ease-in-out infinite;
+  animation: bounce-subtle 3s ease-in-out infinite;
 }
 
 .animate-slide-up {
@@ -303,10 +331,25 @@
   animation: fade-in 0.3s ease-out;
 }
 
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
 /* Added gradient animation utility class */
 .animate-gradient {
   background-size: 200% 200%;
   animation: gradient 3s ease infinite;
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 640px) {
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-bounce-subtle {
+    animation: bounce-subtle 2s ease-in-out infinite;
+  }
 }
 
 /* Custom scrollbar with brand colors */
@@ -325,6 +368,16 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #3a5248;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus states for accessibility */
+.focus-visible\:ring-ochre-400:focus-visible {
+  --tw-ring-color: #e8b95d;
 }
 
 @layer base {
